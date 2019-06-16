@@ -1,0 +1,3 @@
+/* pages/video/video.wxss */
+
+@import "../news/news.wxss";

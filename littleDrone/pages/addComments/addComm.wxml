@@ -1,0 +1,11 @@
+<!--pages/addComments/addComm.wxml-->
+<view class='addCommOutter'>
+<form class='addCommWrapper' bindsubmit='submitBtn'>
+  <rich-text nodes='{{addCommTitle}}'></rich-text>
+  <rich-text nodes='{{addCommInstruction}}'></rich-text>
+  <textarea name='commArea' placeholder='请在此输入评论。最多不可以超过300字。' maxlength='300' height='50rpx' class='commentArea' bindblur='saveCont' bindconfirm='saveCont' /> <!--form组件？-->
+  <rich-text nodes='{{addCommWarning}}'></rich-text>
+  <button class="confirm" size='default' type='primary' form-type='submit'>提交评论</button>
+  <button class="confirm" size='default' type='default' bindtap='cancelBtn'>取消</button>
+</form>
+</view>

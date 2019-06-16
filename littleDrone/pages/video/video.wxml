@@ -1,0 +1,10 @@
+<!--pages/video/video.wxml-->
+<import src="../news/news.wxml" />
+<template is='searchboxTemp' data='{{searchMode}}'/>
+
+<template is='swiperTemp' data='{{newsSwiperData}}' />
+
+<!--回调函数里修改-->
+<view>
+  <template is="newsItemTemp" data="{{newsEntryData}}" />
+</view>

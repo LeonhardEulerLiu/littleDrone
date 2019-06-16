@@ -1,0 +1,11 @@
+/* pages/search/search.wxss */
+@import "../news/news.wxss";
+
+.resWrapper{
+  margin: 10rpx 10rpx;
+}
+
+.searchInstruction{
+  font-size: 35rpx;
+  font-weight: bold;
+}

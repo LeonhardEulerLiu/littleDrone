@@ -1,0 +1,105 @@
+/* pages/news.wxss */
+.newsItem{
+  border-bottom: 1px solid gainsboro;
+}
+
+.newsEntry{
+  width: 100%;
+  height: 60rpx;
+  white-space: nowrap;
+  font-size: 14pt;
+  padding: 6rpx 20rpx;
+}
+
+.newsIcon{
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #eeeeee;
+}
+
+.pressedNewsEntry{
+  background-color:rgb(231, 231, 231);
+}
+
+.entryAuthor{
+  color: blue;
+  font-size: 10pt;
+}
+
+.entryReadCount{
+  color: grey;
+  font-size: 10pt;
+}
+
+.newsSwiper{
+  width: 100%;
+  height: 300rpx;
+  opacity:0.7;
+  filter:alpha(opacity=70);
+}
+
+.searchboxWrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.searchbox{
+  width: 95%;
+  display: flex;
+}
+
+.searchInput{
+  width: 80%;
+  flex: auto;
+}
+
+.swiperNewsTitle{
+  position: relative;
+  top: -80rpx;
+  left: 20rpx;
+  font-size: 15pt;
+  color:black;
+  z-index: 1;
+}
+
+.swiperVideoTitle{
+  position: relative;
+  top: -170rpx;
+  left: 20rpx;
+  font-size: 15pt;
+  color:black;
+  z-index: 1;
+}
+
+.swiperPlay{
+  position: relative;
+  top: -200rpx;
+  left: 333rpx;
+  z-index: 10;
+}
+
+.swiperPlayImg{
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.entryPic{
+  width: 200rpx;
+  height: 100rpx;
+}
+
+.rowFlex{
+  margin: 10rpx 50rpx 10rpx 83rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.entryDetails{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

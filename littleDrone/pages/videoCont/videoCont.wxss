@@ -1,0 +1,6 @@
+/* pages/videoCont/videoCont.wxss */
+@import "../newsCont/newsCont.wxss";
+
+video{
+  margin: 50rpx 0rpx 30rpx 0rpx;
+}

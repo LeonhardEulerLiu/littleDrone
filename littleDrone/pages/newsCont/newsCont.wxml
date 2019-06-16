@@ -1,0 +1,48 @@
+<!--pages/content_news1/content_news1.wxml-->
+<view class="wrapper">
+  <template name="contTitleTemp">
+    <rich-text nodes='{{pubTime}}'></rich-text>
+    <rich-text nodes='{{title}}'></rich-text>
+    <view class='statics'>
+      <rich-text nodes='{{author}}'></rich-text>
+      <rich-text nodes='{{readCount}}'></rich-text>
+    </view>
+  </template>
+  <template is="contTitleTemp" data='{{pubTime, title, author, readCount}}' />
+  <!--image mode="scaleToFill" src="/others/images/minecraftDrone.jpg"></image-->
+
+  <rich-text nodes='{{content}}'></rich-text>
+
+  <template name="commentTitleTemp">
+    <view class='comment_title_wrapper'>
+      <view class='comment_title_wrapleft'>
+        <image src='/others/images/comments.png' class='comment_icon' mode='aspect_fit' />
+        <rich-text nodes='{{comment_title}}'></rich-text>
+      </view>
+      <button size='mini' type='primary' class='comment_entry' open-type='getUserInfo' bindgetuserinfo='afterGettingUser'>添加评论</button>  <!--此处先需要授权获得用户的头像与昵称-->
+    </view>
+  </template>
+
+  <template is="commentTitleTemp" data='{{comment_title}}'/>
+
+  <template name="commentItemTemp">
+    <view class="commentItem" wx:for="{{commentItem}}">
+      <view class="commentUser">
+        <image class="commentIcon" mode="aspectFit" src="{{item.avatar}}"></image>
+        <text decode>&ensp;{{item.nickName}}</text>
+      </view>
+      <view class="commentDetails">
+        <view>
+          <text class="commentCont">{{item.commCont}}</text>
+        </view>
+        <view>
+          <text class="commentTime">{{item.commTime}}</text>
+        </view>
+      </view>
+    </view>
+  </template>
+
+  <view>   <!--Needn't use <scroll-view scroll-y class=...>-->
+    <template is="commentItemTemp" data="{{commentItem}}" />
+  </view>
+</view>

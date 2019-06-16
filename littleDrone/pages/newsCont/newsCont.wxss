@@ -1,0 +1,83 @@
+/* pages/content_news1/content_news1.wxss */
+.wrapper{
+  padding: 10px 10px 10px 10px;
+}
+
+.news_title{
+  margin: 5rpx 0rpx 10rpx 0rpx;
+  font-size: 50rpx;
+  /* line-height: 80rpx; */
+  font-weight: bold;
+}
+
+.news_author{
+  font-size: 15px;
+  line-height: 20px;
+  color: rgb(23, 209, 223);
+}
+
+.news_content{
+  font-size: 13px;
+  line-height: 15px;
+}
+
+.statics{
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment_title{
+  font-size: 15px;
+  font-weight: bold;
+  color: blue;
+}
+
+.comment_icon{
+  width: 70rpx;
+  height: 60rpx;
+}
+
+.comment_title_wrapleft{
+  display: flex;
+}
+
+.comment_title_wrapper{
+  display: flex;
+  margin: 50rpx 0rpx 10rpx 0rpx;
+}
+
+.comment_entry{
+  align-self: flex-end;
+}
+
+.commentItem{
+  border-bottom: 1px solid gainsboro;
+}
+
+.commentUser{
+  display: flex;
+  width: 90%;
+  white-space: nowrap;
+  font-size: 12pt;
+  font-weight: bold;
+  padding: 6rpx 20rpx;
+}
+
+.commentIcon{
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.commentDetails{
+  width: 90%;
+  padding: 0rpx 50rpx 0rpx 50rpx;
+}
+
+.commentCont{
+  font-size: 10pt;
+}
+
+.commentTime{
+  font-size: 10pt;
+  color: rgb(23, 209, 223);
+}

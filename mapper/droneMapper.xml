@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.littleDrone.droneMapper">
+	
+	<!-- 在此处定义resultMap。下面的各属性名与列名均相同。 -->
+	<resultMap type="com.example.littleDrone.newsSwiper" id="newsSwiperMap">
+		<id column="id" property="id" jdbcType="INTEGER"></id>
+		<result column="title" property="title" jdbcType="VARCHAR"></result>
+		<result column="titlePic" property="titlePic" jdbcType="VARCHAR"></result>
+	</resultMap>
+	<resultMap type="com.example.littleDrone.newsList" id="newsListMap">
+		<id column="id" property="id" jdbcType="INTEGER"></id>
+		<result column="title" property="title" jdbcType="VARCHAR"></result>
+		<result column="titlePic" property="titlePic" jdbcType="VARCHAR"></result>
+		<result column="author" property="author" jdbcType="VARCHAR"></result>
+		<result column="readCount" property="readCount" jdbcType="INTEGER"></result>
+	</resultMap>
+	<resultMap type="com.example.littleDrone.newsContent" id="newsContentMap">
+		<id column="id" property="id" jdbcType="INTEGER"></id>
+		<result column="title" property="title" jdbcType="VARCHAR"></result>
+		<result column="pubTime" property="pubTime"></result> 
+			<!-- 特别注意：jdbcType不支持DATETIME。但是，如果不手动指定，那么java会自动转换为
+			TIMESTAMP， 且可以用关系运算符比较大小；所以不要指定jdbcType -->
+		<result column="author" property="author" jdbcType="VARCHAR"></result>
+		<result column="readCount" property="readCount" jdbcType="INTEGER"></result>
+		<result column="content" property="content" jdbcType="LONGVARCHAR"></result>    <!-- 在jdbcType中与text对应的是LONGVARCHAR -->
+	</resultMap>
+	
+	<resultMap type="com.example.littleDrone.videoSwiper" id="videoSwiperMap">
+		<id column="id" property="id" jdbcType="INTEGER"></id>
+		<result column="title" property="title" jdbcType="VARCHAR"></result>
+		<result column="titlePic" property="titlePic" jdbcType="VARCHAR"></result>
+	</resultMap>
+	<resultMap type="com.example.littleDrone.videoList" id="videoListMap">
+		<id column="id" property="id" jdbcType="INTEGER"></id>
+		<result column="title" property="title" jdbcType="VARCHAR"></result>
+		<result column="titlePic" property="titlePic" jdbcType="VARCHAR"></result>
+		<result column="author" property="author" jdbcType="VARCHAR"></result>
+		<result column="readCount" property="readCount" jdbcType="INTEGER"></result>
+	</resultMap>
+	<resultMap type="com.example.littleDrone.videoContent" id="videoContentMap">
+		<id column="id" property="id" jdbcType="INTEGER"></id>
+		<result column="title" property="title" jdbcType="VARCHAR"></result>
+		<result column="pubTime" property="pubTime"></result> 
+		<result column="author" property="author" jdbcType="VARCHAR"></result>
+		<result column="readCount" property="readCount" jdbcType="INTEGER"></result>
+		<result column="content" property="content" jdbcType="LONGVARCHAR"></result>
+		<result column="videoSrc" property="videoSrc" jdbcType="VARCHAR"></result>
+	</resultMap>
+	
+	<resultMap type="com.example.littleDrone.usedComment" id="usedCommentMap">
+		<id column="id" property="id" jdbcType="INTEGER"></id>
+		<result column="nickName" property="nickName" jdbcType="VARCHAR"></result>
+		<result column="avatar" property="avatar" jdbcType="VARCHAR"></result>
+		<result column="commTime" property="commTime"></result>
+		<result column="commCont" property="commCont" jdbcType="LONGVARCHAR"></result>
+	</resultMap>
+	<resultMap type="com.example.littleDrone.searchList" id="searchListMap">
+		<id column="id" property="id" jdbcType="INTEGER"></id>
+		<id column="link" property="link" jdbcType="INTEGER"></id>
+			<!-- 这个map由两个字段构成唯一标识 -->
+		<result column="title" property="title" jdbcType="VARCHAR"></result>
+		<result column="titlePic" property="titlePic" jdbcType="VARCHAR"></result>
+		<result column="author" property="author" jdbcType="VARCHAR"></result>
+		<result column="readCount" property="readCount" jdbcType="INTEGER"></result>
+	</resultMap>
+	
+	<resultMap type="com.example.littleDrone.news" id="newsMap">
+		<id column="id" property="id" jdbcType="INTEGER"></id>
+		<result column="state" property="state" jdbcType="INTEGER"></result>
+		<result column="title" property="title" jdbcType="VARCHAR"></result>
+		<result column="titlePic" property="titlePic" jdbcType="VARCHAR"></result>
+		<result column="pubTime" property="pubTime"></result>
+		<result column="author" property="author" jdbcType="VARCHAR"></result>
+		<result column="readCount" property="readCount" jdbcType="INTEGER"></result>
+		<result column="content" property="content" jdbcType="LONGVARCHAR"></result>
+	</resultMap>
+	<resultMap type="com.example.littleDrone.videos" id="videoMap">
+		<id column="id" property="id" jdbcType="INTEGER"></id>
+		<result column="state" property="state" jdbcType="INTEGER"></result>
+		<result column="title" property="title" jdbcType="VARCHAR"></result>
+		<result column="titlePic" property="titlePic" jdbcType="VARCHAR"></result>
+		<result column="pubTime" property="pubTime"></result>
+		<result column="author" property="author" jdbcType="VARCHAR"></result>
+		<result column="readCount" property="readCount" jdbcType="INTEGER"></result>
+		<result column="content" property="content" jdbcType="LONGVARCHAR"></result>
+		<result column="videoSrc" property="videoSrc" jdbcType="VARCHAR"></result>
+	</resultMap>
+	<resultMap type="com.example.littleDrone.comments" id="commMap">
+		<id column="id" property="id" jdbcType="INTEGER"></id>
+		<result column="state" property="state" jdbcType="INTEGER"></result>
+		<result column="nickName" property="nickName" jdbcType="VARCHAR"></result>
+		<result column="avatar" property="avatar" jdbcType="VARCHAR"></result>
+		<result column="commTime" property="commTime"></result>
+		<result column="commCont" property="commCont" jdbcType="LONGVARCHAR"></result>
+		<result column="type" property="type" jdbcType="INTEGER"></result>
+		<result column="typeId" property="typeId" jdbcType="INTEGER"></result>
+	</resultMap>
+	
+	<!-- 在此处定义语句 -->
+	<select id="selectNewsSwiper" resultMap="newsSwiperMap">
+		SELECT id, title, titlePic FROM news WHERE state = 2 ORDER BY pubTime DESC;
+	</select>
+	<select id="selectNewsList" resultMap="newsListMap">
+		SELECT id, title, titlePic, author, readCount FROM news WHERE state = 1 ORDER BY pubTime DESC;
+	</select>
+	<update id="updateNewsReadcount" parameterType="java.lang.Integer">
+		UPDATE news SET readCount = readCount+1 WHERE id = #{id,jdbcType=INTEGER};
+	</update>
+	<select id="selectNewsContent" parameterType="java.lang.Integer" resultMap="newsContentMap">
+		SELECT id, title, pubTime, author, readCount, content FROM news WHERE id = #{id,jdbcType=INTEGER};
+	</select>
+	<select id="selectNewsComment" parameterType="java.lang.Integer" resultMap="usedCommentMap">
+		SELECT id, nickName, avatar, commTime, commCont FROM comments 
+		WHERE type = 1 AND typeId = #{typeId,jdbcType=INTEGER} AND state = 1 ORDER BY commTime DESC;
+	</select>
+	
+	<select id="selectVideoSwiper" resultMap="videoSwiperMap">
+		SELECT id, title, titlePic FROM videos WHERE state = 2 ORDER BY pubTime DESC;
+	</select>
+	<select id="selectVideoList" resultMap="videoListMap">
+		SELECT id, title, titlePic, author, readCount FROM videos WHERE state = 1 ORDER BY pubTime DESC;
+	</select>
+	<update id="updateVideoReadcount" parameterType="java.lang.Integer">
+		UPDATE videos SET readCount = readCount+1 WHERE id = #{id,jdbcType=INTEGER};
+	</update>
+	<select id="selectVideoContent" parameterType="java.lang.Integer" resultMap="videoContentMap">
+		SELECT id, title, pubTime, author, readCount, content, videoSrc FROM videos 
+		WHERE id = #{id,jdbcType=INTEGER};
+	</select>
+	<select id="selectVideoComment" parameterType="java.lang.Integer" resultMap="usedCommentMap">
+		SELECT id, nickName, avatar, commTime, commCont FROM comments 
+		WHERE type = 2 AND typeId = #{typeId,jdbcType=INTEGER} AND state = 1 ORDER BY commTime DESC;
+	</select>
+	
+	<!-- 搜索是否正确？ -->
+	<select id="selectSearchList" parameterType="java.lang.String" resultMap="searchListMap">
+		(SELECT id, 1 AS link, title, titlePic, author, readCount FROM news
+		WHERE title LIKE CONCAT('%', #{query,jdbcType=VARCHAR}, '%') OR author LIKE CONCAT('%', #{query,jdbcType=VARCHAR}, '%'))
+		UNION
+		(SELECT id, 2 AS link, title, titlePic, author, readCount FROM videos
+		WHERE title LIKE CONCAT('%', #{query,jdbcType=VARCHAR}, '%') OR author LIKE CONCAT('%', #{query,jdbcType=VARCHAR}, '%'));
+	</select>
+	<insert id="insertComment" parameterType="com.example.littleDrone.comments">
+		INSERT INTO comments(type, typeId, nickName, avatar, commTime, commCont) VALUES 
+		(#{type,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, 
+		#{avatar,jdbcType=VARCHAR}, #{commTime,jdbcType=TIMESTAMP}, #{commCont,jdbcType=LONGVARCHAR});
+	</insert>
+
+	<select id="selectNews" resultMap="newsMap">
+		SELECT id, state, title, titlePic, pubTime, author, readCount, content FROM news;
+	</select>	
+	<insert id="insertNewsMan" parameterType="com.example.littleDrone.news">
+		INSERT INTO news(id, state, title, titlePic, pubTime, author, readCount, content) VALUES
+		(#{id,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{titlePic,jdbcType=VARCHAR},
+		 #{pubTime,jdbcType=TIMESTAMP}, #{author,jdbcType=VARCHAR}, #{readCount,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR});
+	</insert>
+	<update id="updateNewsMan" parameterType="com.example.littleDrone.news">
+		UPDATE news
+		SET state=#{state,jdbcType=INTEGER}, title=#{title,jdbcType=VARCHAR}, titlePic=#{titlePic,jdbcType=VARCHAR},
+		    pubTime=#{pubTime,jdbcType=TIMESTAMP}, author=#{author,jdbcType=VARCHAR}, readCount=#{readCount,jdbcType=INTEGER},
+		    content=#{content,jdbcType=LONGVARCHAR}
+		WHERE id=#{id,jdbcType=INTEGER};
+	</update>
+	<delete id="deleteNewsMan" parameterType="java.lang.Integer">
+		DELETE FROM news WHERE id=#{id,jdbcType=INTEGER};
+	</delete>
+	
+	<select id="selectVideo" resultMap="videoMap">
+		SELECT id, state, title, titlePic, pubTime, author, readCount, content, videoSrc FROM videos;
+	</select>
+	<insert id="insertVideoMan" parameterType="com.example.littleDrone.videos">
+		INSERT INTO videos(id, state, title, titlePic, pubTime, author, readCount, content, videoSrc) VALUES
+		(#{id,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{titlePic,jdbcType=VARCHAR},
+		 #{pubTime,jdbcType=TIMESTAMP}, #{author,jdbcType=VARCHAR}, #{readCount,jdbcType=INTEGER}, 
+		 #{content,jdbcType=LONGVARCHAR}, #{videoSrc,jdbcType=VARCHAR});
+	</insert>
+	<update id="updateVideoMan" parameterType="com.example.littleDrone.videos">
+		UPDATE videos
+		SET state=#{state,jdbcType=INTEGER}, title=#{title,jdbcType=VARCHAR}, titlePic=#{titlePic,jdbcType=VARCHAR},
+		    pubTime=#{pubTime,jdbcType=TIMESTAMP}, author=#{author,jdbcType=VARCHAR}, readCount=#{readCount,jdbcType=INTEGER},
+		    content=#{content,jdbcType=LONGVARCHAR}, videoSrc=#{videoSrc,jdbcType=VARCHAR}
+		WHERE id=#{id,jdbcType=INTEGER};
+	</update>
+	<delete id="deleteVideoMan" parameterType="java.lang.Integer">
+		DELETE FROM videos WHERE id=#{id,jdbcType=INTEGER};
+	</delete>
+	
+	<select id="selectComm" resultMap="commMap">
+		SELECT id, state, nickName, avatar, commTime, commCont, type, typeId FROM comments;
+	</select>
+	<insert id="insertCommMan" parameterType="com.example.littleDrone.comments">
+		INSERT INTO comments(id, state, nickName, avatar, commTime, commCont, type, typeId) VALUES
+		(#{id,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, 
+		 #{commTime,jdbcType=TIMESTAMP}, #{commCont,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER});
+	</insert>
+	<update id="updateCommMan" parameterType="com.example.littleDrone.comments">
+		UPDATE comments
+		SET state=#{state,jdbcType=INTEGER}, nickName=#{nickName,jdbcType=VARCHAR}, avatar=#{avatar,jdbcType=VARCHAR}, 
+		 commTime=#{commTime,jdbcType=TIMESTAMP}, commCont=#{commCont,jdbcType=VARCHAR}, type=#{type,jdbcType=INTEGER}, 
+		 typeId=#{typeId,jdbcType=INTEGER}
+		WHERE id=#{id,jdbcType=INTEGER};
+	</update>
+	<delete id="deleteCommMan" parameterType="java.lang.Integer">
+		DELETE FROM comments WHERE id=#{id,jdbcType=INTEGER};
+	</delete>
+	
+	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+	<!-- layui后台 -->
+	<select id="showNewsToLay" parameterType="java.lang.Integer" resultMap="newsMap">
+		SELECT id, state, title, titlePic, pubTime, author, readCount, content FROM news
+		WHERE id=#{id,jdbcType=INTEGER};
+	</select>
+	<select id="selectNewsPage" parameterType="com.example.littleDrone.pager" resultMap="newsMap">
+		SELECT id, state, title, titlePic, pubTime, author, readCount, content FROM news
+		LIMIT #{start, jdbcType=INTEGER}, #{limit, jdbcType=INTEGER};
+	</select>
+	<!-- 用于搜索的话，都是VARCHAR好了 -->
+	<select id="siftNews" parameterType="com.example.littleDrone.newsSifter" resultMap="newsMap">
+		SELECT id, state, title, titlePic, pubTime, author, readCount, content FROM news
+		WHERE state REGEXP(CONCAT("^", #{state, jdbcType=VARCHAR}, "$"))
+		AND title LIKE(CONCAT("%", #{title, jdbcType=VARCHAR}, "%"))
+		AND pubTime LIKE(CONCAT("%", #{pubTime, jdbcType=VARCHAR}, "%"))
+		AND author LIKE(CONCAT("%", #{author, jdbcType=VARCHAR}, "%"))
+		AND content LIKE(CONCAT("%", #{content, jdbcType=VARCHAR}, "%"))
+		LIMIT #{start, jdbcType=INTEGER}, #{limit, jdbcType=INTEGER};
+	</select>
+	
+	<select id="showVideoToLay" parameterType="java.lang.Integer" resultMap="videoMap">
+		SELECT id, state, title, titlePic, pubTime, author, readCount, content, videoSrc FROM videos
+		WHERE id=#{id,jdbcType=INTEGER};
+	</select>
+	<select id="selectVideoPage" parameterType="com.example.littleDrone.pager" resultMap="videoMap">
+		SELECT id, state, title, titlePic, pubTime, author, readCount, content, videoSrc FROM videos
+		LIMIT #{start, jdbcType=INTEGER}, #{limit, jdbcType=INTEGER};
+	</select>
+	<select id="siftVideo" parameterType="com.example.littleDrone.videoSifter" resultMap="videoMap">
+		SELECT id, state, title, titlePic, pubTime, author, readCount, content, videoSrc FROM videos
+		WHERE state REGEXP(CONCAT("^", #{state, jdbcType=VARCHAR}, "$"))
+		AND title LIKE(CONCAT("%", #{title, jdbcType=VARCHAR}, "%"))
+		AND pubTime LIKE(CONCAT("%", #{pubTime, jdbcType=VARCHAR}, "%"))
+		AND author LIKE(CONCAT("%", #{author, jdbcType=VARCHAR}, "%"))
+		AND content LIKE(CONCAT("%", #{content, jdbcType=VARCHAR}, "%"))
+		LIMIT #{start, jdbcType=INTEGER}, #{limit, jdbcType=INTEGER};
+	</select>
+	
+	<select id="showCommToLay" parameterType="java.lang.Integer" resultMap="commMap">
+		SELECT id, state, nickName, avatar, commTime, commCont, type, typeId FROM comments
+		WHERE id=#{id,jdbcType=INTEGER};
+	</select>
+	<select id="selectCommPage" parameterType="com.example.littleDrone.pager" resultMap="commMap">
+		SELECT id, state, nickName, avatar, commTime, commCont, type, typeId FROM comments
+		LIMIT #{start, jdbcType=INTEGER}, #{limit, jdbcType=INTEGER};
+	</select>
+	<select id="siftComm" parameterType="com.example.littleDrone.commSifter" resultMap="commMap">
+		SELECT id, state, nickName, avatar, commTime, commCont, type, typeId FROM comments
+		WHERE state REGEXP(CONCAT("^", #{state, jdbcType=VARCHAR}, "$"))
+		AND nickName LIKE(CONCAT("%", #{nickName, jdbcType=VARCHAR}, "%"))
+		AND avatar LIKE(CONCAT("%", #{avatar, jdbcType=VARCHAR}, "%"))
+		AND commTime LIKE(CONCAT("%", #{commTime, jdbcType=VARCHAR}, "%"))
+		AND commCont LIKE(CONCAT("%", #{commCont, jdbcType=VARCHAR}, "%"))
+		AND type REGEXP(CONCAT("^", #{type, jdbcType=VARCHAR}, "$"))
+		AND typeId REGEXP(CONCAT("^", #{typeId, jdbcType=VARCHAR}, "$"))
+		LIMIT #{start, jdbcType=INTEGER}, #{limit, jdbcType=INTEGER};
+	</select>
+	
+</mapper>

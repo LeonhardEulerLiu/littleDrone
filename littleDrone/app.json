@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/news/news",
+    "pages/video/video",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/newsCont/newsCont",
+    "pages/videoCont/videoCont",
+    "pages/addComments/addComm",
+    "pages/search/search"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1E90FF",
+    "navigationBarTitleText": "Little Drone",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#4F94CD",
+    "selectedColor": "#551A8B",
+    "backgroundColor": "#FFFFFF",
+    "position": "top",
+    "list": [
+      {
+        "pagePath": "pages/news/news",
+        "text": "news"
+      },
+      {
+        "pagePath": "pages/video/video",
+        "text": "video"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

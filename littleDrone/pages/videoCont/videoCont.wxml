@@ -1,0 +1,15 @@
+<!--pages/videoCont/videoCont.wxml-->
+<import src="../newsCont/newsCont.wxml" />
+<view class="wrapper">
+  <template is="contTitleTemp" data='{{pubTime, title, author, readCount}}' />
+
+  <video src='{{videoSrc}}'></video>
+
+  <rich-text nodes='{{content}}'></rich-text>
+
+  <template is="commentTitleTemp" data='{{comment_title}}'/>
+
+  <view>
+    <template is="commentItemTemp" data="{{commentItem}}" />
+  </view>
+</view>

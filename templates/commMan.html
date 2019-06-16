@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Form Submission</title>
+    <meta http-equiv="typeId-Type" typeId="text/html; charset=UTF-8" />
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<p>
+    <a href="/drone/manage/index"><button type="button" class="btn btn-primary">Return to home</button></a>
+</p>
+    <center>
+        <br><br>
+    <h2 style="color:green">Comment Update</h2>
+        <br><br>
+        
+        <form class="form-horizontal" method="post" onsubmit="return false" id="commForm">
+
+			<div class="form-group" style="width:700px">
+                <label for="option" class="col-sm-2 control-label">Option</label>
+                <div class="col-sm-10">
+                    <select id="manuplation">
+                    	<option>Insert</option>
+                    	<option>Delete</option>
+                    	<option>Update</option>
+                    </select>
+                </div>
+            </div>
+			
+            <div class="form-group" style="width:700px">
+                <label for="id" class="col-sm-2 control-label">Id</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="id" name="id" placeholder="Enter id">
+                </div>
+            </div>
+
+            <div class="form-group" style="width:700px">
+                <label for="state" class="col-sm-2 control-label">State</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="state" name="state" placeholder="Enter state">
+                </div>
+            </div>
+
+            <div class="form-group" style="width:700px">
+                <label for="nickName" class="col-sm-2 control-label">NickName</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="nickName" name="nickName" placeholder="Enter title">
+                </div>
+            </div>
+
+            <div class="form-group" style="width:700px">
+                <label for="avatar" class="col-sm-2 control-label">Avatar</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="avatar" name="avatar" placeholder="Enter avatar">
+                </div>
+            </div>
+
+            <div class="form-group" style="width:700px">
+                <label for="commTime" class="col-sm-2 control-label">CommTime</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="commTime" name="commTime" placeholder="Enter commTime">
+                </div>
+            </div>
+            
+            <div class="form-group" style="width:700px">
+                <label for="commCont" class="col-sm-2 control-label">CommCont</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control" id="commCont" name="commCont" placeholder="Enter commCont">
+                </div>
+            </div>
+            
+            <div class="form-group" style="width:700px">
+                <label for="type" class="col-sm-2 control-label">Type</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="type" name="type" placeholder="Enter type">
+                </div>
+            </div>
+            
+            <div class="form-group" style="width:700px">
+                <label for="typeId" class="col-sm-2 control-label">TypeId</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="typeId" name="typeId" placeholder="Enter typeId">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <button type="submit" class="btn btn-primary" id="btn" onclick="choose()">Submit</button>
+                    <input type="reset" class="btn btn-warning" value="Reset" />
+                </div>
+            </div>
+        </form>
+
+    </center>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script> <script>
+
+function choose() {
+	var options=$("#manuplation option:selected").text();
+	if(options == "Insert"){
+		alert("Insert!");
+		insertComm();
+	}
+	else if(options == "Delete") {
+		alert("Delete!");
+		deleteComm();
+	}
+	else if(options == "Update") {
+		alert("Update!");
+		updateComm();
+	}
+}
+
+function insertComm() {
+    $.ajax({
+        url: '/drone/manage/commInsert', //请求的url
+        type: 'post', //请求的方式
+        contentType:"application/json;charset=utf-8",
+        data: JSON.stringify(
+    			{
+    				id: null,
+    				state: $('#state').val(),
+    				nickName: $('#nickName').val(),
+    				avatar: $('#avatar').val(),
+    				commTime: $('#commTime').val(),
+    				commCont: $('#commCont').val(),
+    				type: $('#type').val(),
+    				typeId: $('#typeId').val()
+    			}
+    	),
+        error:function (data) {
+            alert('insert请求失败');
+        },
+        success:function (data) {
+            alert('insert请求成功');
+        }
+    });
+}
+
+function updateComm() {
+	$.ajax({
+        url: '/drone/manage/commUpdate', //请求的url
+        type: 'post', //请求的方式
+        contentType:"application/json;charset=utf-8",
+        data: JSON.stringify(
+    			{
+    				id: $('#id').val(),
+    				state: $('#state').val(),
+    				nickName: $('#nickName').val(),
+    				avatar: $('#avatar').val(),
+    				commTime: $('#commTime').val(),
+    				commCont: $('#commCont').val(),
+    				type: $('#type').val(),
+    				typeId: $('#typeId').val()
+    			}
+    	),
+        error:function (data) {
+            alert('update请求失败');
+        },
+        success:function (data) {
+            alert('update请求成功');
+        }
+    });
+}
+
+function deleteComm() {
+	$.ajax({
+        url: '/drone/manage/commDelete', //请求的url
+        type: 'post', //请求的方式
+        contentType:"application/json;charset=utf-8",
+        data: JSON.stringify(
+    			{
+    				id: $('#id').val()
+    			}
+    	),
+        error:function (data) {
+            alert('delete请求失败');
+        },
+        success:function (data) {
+            alert('delete请求成功');
+        }
+    });
+}
+</script>
+</html>

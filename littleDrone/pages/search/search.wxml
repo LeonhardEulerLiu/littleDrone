@@ -1,0 +1,12 @@
+<!--pages/search/search.wxml-->
+<import src="../news/news.wxml" />
+<template is='searchboxTemp' data='{{searchMode}}'/>
+
+<view class="resWrapper">
+  <rich-text nodes='{{searchInstruction}}'></rich-text>
+</view>
+
+<!--在回调函数里照顾它-->
+<view>
+  <template is="newsItemTemp" data="{{newsEntryData}}" />
+</view>

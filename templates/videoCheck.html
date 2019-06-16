@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Video list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body>
+
+<center>
+    <br><br>
+<h2 style="color:green">All Records in Table video</h2>
+    <br><br>
+
+<p>
+<button id="fetchVideo" onclick="fetchVideo()" type="button" class="btn btn-primary">Check</button>
+</p>
+
+<table class="table table-bordered table table-hover" style="width:800px">
+    <thead style="color:red">
+        <th>id</th>
+        <th>state</th>
+        <th>title</th>
+        <th>titlePic</th>
+        <th>pubTime</th>
+        <th>author</th>
+        <th>readCount</th>
+        <th>content</th>
+        <th>videoSrc</th>
+    </thead>
+    <tbody id="videoTable">
+    	<tr>
+        	<td>Jack</td>
+        	<td>24</td>
+        	<td>M</td>
+        	<td>jack@gmail.com</td>
+        	<td>New York</td>
+        	<td>1</td>
+        	<td>2</td>
+        	<td>3</td>
+        	<td>4</td>
+    	</tr>
+    </tbody>
+</table>
+
+<p>
+    <a href="/drone/manage/index"><button type="button" class="btn btn-primary">Return to home</button></a>
+</p>
+
+</center>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	function fetchVideo() {
+		$.ajax({
+			url: '/drone/manage/videoSelect',
+			type: 'post',
+			error: function(data){
+				alert("Error!");
+			},
+			success: function(data){
+				var str1 = "";
+				$("#videoTable").html("");
+				for(var i=0; i<data.length; i++){
+					str1 = "<tr>" +
+					"<td>" + data[i].id + "</td>" +
+					"<td>" + data[i].state + "</td>" +
+					"<td>" + data[i].title + "</td>" +
+					"<td>" + data[i].titlePic + "</td>" +
+					"<td>" + data[i].pubTime + "</td>" +
+					"<td>" + data[i].author + "</td>" +
+					"<td>" + data[i].readCount + "</td>" +
+					"<td>" + data[i].content + "</td>" +
+					"<td>" + data[i].videoSrc + "</td>" +
+					"</tr>";
+					$("#videoTable").append(str1);
+				}
+			}
+		});
+	}
+</script>
+
+</html>

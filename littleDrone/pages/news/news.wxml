@@ -1,0 +1,57 @@
+<!--pages/news.wxml-->
+<!-- <text>pages/news.wxml</text> -->
+
+<template name='searchboxTemp'>
+  <view class='searchboxWrapper'>
+    <view class='searchbox'>
+      <icon type='search' size='13' color='blue'></icon>
+      <input class='searchInput' placeholder='单击以搜索' type='text' maxlength='50' confirm-type='search' bindconfirm="{{searchMode?'researchItems':'searchItems'}}" />
+      <!--icon type='clear' size='13' color='grey' bindtap='clearSearchText'></icon-->
+    </view>
+  </view>
+</template>
+
+<template is='searchboxTemp' data='{{searchMode}}'/>
+
+<template name='swiperTemp'>
+  <swiper indicator-dots autoplay>
+    <swiper-item wx:for="{{newsSwiperData}}">
+      <navigator url="{{item.link}}?id={{item.id}}">         <!--别忘记传递参数值id-->
+        <view>
+          <image class="newsSwiper" mode="scaleToFill" src="{{item.titlePic}}" />
+        </view>
+        <view class="swiperPlay" wx:if="{{item.isVideo}}">
+          <image class="swiperPlayImg" src="{{item.playIcon}}" />
+        </view>
+        <view class="{{item.isVideo?'swiperVideoTitle':'swiperNewsTitle'}}">
+          <text>{{item.title}}</text>
+        </view>
+      </navigator>
+    </swiper-item>
+  </swiper>
+</template>
+
+<template is='swiperTemp' data='{{newsSwiperData}}' />
+
+<template name="newsItemTemp">
+  <view class="newsItem" wx:for="{{newsEntryData}}">
+    <navigator url="{{item.link}}?id={{item.id}}">
+      <view class="newsEntry" hover-class='pressedNewsEntry'>
+        <image class="newsIcon" mode="aspectFit" src="{{item.icon}}" ></image>
+        <text decode>&ensp;{{item.title}}</text>
+      </view>
+      <view class="rowFlex">
+        <view class="entryDetails">
+          <text class="entryAuthor">{{item.author}}</text>
+          <text class="entryReadCount">{{item.feature}}：{{item.readCount}}</text>
+        </view>
+        <image class="entryPic" src="{{item.titlePic}}" mode='aspectFill'></image>
+      </view>
+    </navigator>
+  </view>
+</template>
+
+<view>   <!--Needn't use <scroll-view scroll-y class=...>-->
+  <template is="newsItemTemp" data="{{newsEntryData}}" />
+  <!--view class="newsEntry" hover-class='pressedNewsEntry' wx:for='{{news_list_array}}'><image class="newsIcon" mode="aspectFit" src="/others/images/news.jpg" ></image><text decode>&ensp;{{item}}</text></view-->
+</view>

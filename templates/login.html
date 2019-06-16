@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>后台登录页面——鸣谢代码狗WEB开发教程</title>
+  <link rel="stylesheet" href="/layui/css/layui.css">
+  <script src='/layui/layui.all.js'></script>
+  <script type='text/javascript'>
+
+function f1(){
+	console.log("!");
+	var user= document.getElementById("user").value;
+	var password = document.getElementById("password").value;
+	if(user == "admin" && password == "123456"){
+		alert("ok.");
+		window.location.href="http://localhost:8080/drone/manage/index";
+		window.event.returnValue=false;
+	}
+	else{
+		alert("no.");
+	}
+	//alert("user:"+user+" passwd:"+password);
+}
+
+</script>
+<style>
+.window{  
+    width: 400px;  
+    position: absolute;  
+    margin-left: -200px;  
+    margin-top: -80px;  
+    top: 50%;  
+    left: 50%;  
+    display: block;  
+    z-index: 2000;  
+     background: #fff;
+    padding: 20 0;
+} 
+</style>
+</head>
+
+<body style="background: #f1f1f1;">
+<div class="window">
+<form  class="layui-form" method="post">
+  <div class="layui-form-item" style="margin-right: 100px;margin-top: 20px;">
+    <label class="layui-form-label">用户名：</label>
+    <div class="layui-input-block">
+      <input type="text" name="user" id="user" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item" >
+    <label class="layui-form-label">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+    <div class="layui-input-inline">
+      <input type="password" name="password" id="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+  <input type="checkbox" name="123" title="写作" lay-skin="primary" checked>
+<div style="margin-left: 50px;margin-bottom: 10px;" class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>保持登录7天</span><i class="layui-icon"></i></div>
+    <div style="text-align: center;">
+      <input type="submit" class="layui-btn" onclick="f1()" value="登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录"/>
+      
+    </div>
+  </div>
+</form>
+
+ </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>News list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body>
+
+<center>
+    <br><br>
+<h2 style="color:green">All Records in Table news</h2>
+    <br><br>
+
+<p>
+<button id="fetchNews" onclick="fetchNews()" type="button" class="btn btn-primary">Check</button>
+</p>
+
+<table class="table table-bordered table table-hover" style="width:800px">
+    <thead style="color:red">
+        <th>id</th>
+        <th>state</th>
+        <th>title</th>
+        <th>titlePic</th>
+        <th>pubTime</th>
+        <th>author</th>
+        <th>readCount</th>
+        <th>content</th>
+    </thead>
+    <tbody id="newsTable">
+    	<tr>
+        	<td>Jack</td>
+        	<td>24</td>
+        	<td>M</td>
+        	<td>jack@gmail.com</td>
+        	<td>New York</td>
+        	<td>1</td>
+        	<td>2</td>
+        	<td>3</td>
+    	</tr>
+    </tbody>
+</table>
+
+<p>
+    <a href="/drone/manage/index"><button type="button" class="btn btn-primary">Return to home</button></a>
+</p>
+
+</center>
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	function fetchNews() {
+		$.ajax({
+			url: '/drone/manage/newsSelect',
+			type: 'post',
+			error: function(data){
+				alert("Error!");
+			},
+			success: function(data){
+				var str1 = "";
+				$("#newsTable").html("");
+				//console.log("okey.");
+				//alert("okey.");
+				//alert(JSON.stringify(data));
+				for(var i=0; i<data.length; i++){
+					str1 = "<tr>" +
+					"<td>" + data[i].id + "</td>" +
+					"<td>" + data[i].state + "</td>" +
+					"<td>" + data[i].title + "</td>" +
+					"<td>" + data[i].titlePic + "</td>" +
+					"<td>" + data[i].pubTime + "</td>" +
+					"<td>" + data[i].author + "</td>" +
+					"<td>" + data[i].readCount + "</td>" +
+					"<td>" + data[i].content + "</td>" +
+					"</tr>";
+					$("#newsTable").append(str1);
+				}
+			}
+		});
+	}
+</script>
+
+</html>

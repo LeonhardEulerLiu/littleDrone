@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<p>
+   <a href="/drone/manage/index"><button type="button" class="btn btn-primary">Return to home</button></a>
+</p>
+    <center>		
+        <br><br>
+    <h2 style="color:green">Video Update</h2>
+        <br><br>
+		
+        <form class="form-horizontal" method="post" onsubmit="return false" id="videoForm">
+
+			<div class="form-group" style="width:700px">
+                <label for="option" class="col-sm-2 control-label">Option</label>
+                <div class="col-sm-10">
+                    <select id="manuplation">
+                    	<option>Insert</option>
+                    	<option>Delete</option>
+                    	<option>Update</option>
+                    </select>
+                </div>
+            </div>
+			
+            <div class="form-group" style="width:700px">
+                <label for="id" class="col-sm-2 control-label">Id</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="id" name="id" placeholder="Enter id">
+                </div>
+            </div>
+
+            <div class="form-group" style="width:700px">
+                <label for="state" class="col-sm-2 control-label">State</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="state" name="state" placeholder="Enter state">
+                </div>
+            </div>
+
+            <div class="form-group" style="width:700px">
+                <label for="title" class="col-sm-2 control-label">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
+                </div>
+            </div>
+
+            <div class="form-group" style="width:700px">
+                <label for="titlePic" class="col-sm-2 control-label">TitlePic</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="titlePic" name="titlePic" placeholder="Enter titlePic">
+                </div>
+            </div>
+
+            <div class="form-group" style="width:700px">
+                <label for="pubTime" class="col-sm-2 control-label">PubTime</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="pubTime" name="pubTime" placeholder="Enter pubTime">
+                </div>
+            </div>
+            
+            <div class="form-group" style="width:700px">
+                <label for="author" class="col-sm-2 control-label">Author</label>
+                <div class="col-sm-10">
+                    <input type="text"  class="form-control" id="author" name="author" placeholder="Enter author">
+                </div>
+            </div>
+            
+            <div class="form-group" style="width:700px">
+                <label for="readCount" class="col-sm-2 control-label">ReadCount</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="readCount" name="readCount" placeholder="Enter readCount">
+                </div>
+            </div>
+            
+            <div class="form-group" style="width:700px">
+                <label for="content" class="col-sm-2 control-label">Content</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="content" name="content" placeholder="Enter content">
+                </div>
+            </div>
+            
+            <div class="form-group" style="width:700px">
+                <label for="videoSrc" class="col-sm-2 control-label">videoSrc</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="videoSrc" name="videoSrc" placeholder="Enter videoSrc">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <button type="submit" class="btn btn-primary" id="btn" onclick="choose()">Submit</button>
+                    <input type="reset" class="btn btn-warning" value="Reset" />
+                </div>
+            </div>
+        </form>
+
+    </center>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script> 
+<script>
+
+function choose() {
+	//alert("init!");
+	//alert($("#manuplation option:selected").text());
+	var options=$("#manuplation option:selected").text();
+	if(options == "Insert"){
+		alert("Insert!");
+		insertVideo();
+	}
+	else if(options == "Delete") {
+		alert("Delete!");
+		deleteVideo();
+	}
+	else if(options == "Update") {
+		alert("Update!");
+		updateVideo();
+	}
+}
+
+function insertVideo() {
+    $.ajax({
+        url: '/drone/manage/videoInsert', //请求的url
+        type: 'post', //请求的方式
+        contentType:"application/json;charset=utf-8",
+        data: JSON.stringify(
+    			{
+    				id: null,
+    				state: $('#state').val(),
+    				title: $('#title').val(),
+    				titlePic: $('#titlePic').val(),
+    				pubTime: $('#pubTime').val(),
+    				author: $('#author').val(),
+    				readCount: $('#readCount').val(),
+    				content: $('#content').val(),
+    				videoSrc: $('#videoSrc').val()
+    			}
+    	),
+        error:function (data) {
+            alert('insert请求失败');
+        },
+        success:function (data) {
+            alert('insert请求成功');
+        }
+    });
+}
+
+function updateVideo() {
+	$.ajax({
+        url: '/drone/manage/videoUpdate', //请求的url
+        type: 'post', //请求的方式
+        contentType:"application/json;charset=utf-8",
+        data: JSON.stringify(
+    			{
+    				id: $('#id').val(),
+    				state: $('#state').val(),
+    				title: $('#title').val(),
+    				titlePic: $('#titlePic').val(),
+    				pubTime: $('#pubTime').val(),
+    				author: $('#author').val(),
+    				readCount: $('#readCount').val(),
+    				content: $('#content').val(),
+    				videoSrc: $('#videoSrc').val()
+    			}
+    	),
+        error:function (data) {
+            alert('update请求失败');
+        },
+        success:function (data) {
+            alert('update请求成功');
+        }
+    });
+}
+
+function deleteVideo() {
+	$.ajax({
+        url: '/drone/manage/videoDelete', //请求的url
+        type: 'post', //请求的方式
+        contentType:"application/json;charset=utf-8",
+        data: JSON.stringify(
+    			{
+    				id: $('#id').val()
+    			}
+    	),
+        error:function (data) {
+            alert('delete请求失败');
+        },
+        success:function (data) {
+            alert('delete请求成功');
+        }
+    });
+}
+</script>
+</html>
